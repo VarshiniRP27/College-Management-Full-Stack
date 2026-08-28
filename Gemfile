@@ -39,7 +39,7 @@ gem "kamal", require: false
 gem "thruster", require: false
 
 # Image processing
-gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 2.0"
 
 # Password authentication
 gem "bcrypt", "~> 3.1"
