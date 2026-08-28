@@ -1,0 +1,22 @@
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/erb-6.0.7/ext/erb/escape
+/usr/local/bin/ruby extconf.rb
+checking for rb_ext_ractor_safe() in ruby.h... yes
+creating Makefile
+
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/erb-6.0.7/ext/erb/escape
+make -j3 DESTDIR\= sitearchdir\=./.gem.20260828-81157-f000ym sitelibdir\=./.gem.20260828-81157-f000ym clean
+make: warning: -j3 forced in submake: resetting jobserver mode.
+
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/erb-6.0.7/ext/erb/escape
+make -j3 DESTDIR\= sitearchdir\=./.gem.20260828-81157-f000ym sitelibdir\=./.gem.20260828-81157-f000ym
+make: warning: -j3 forced in submake: resetting jobserver mode.
+compiling escape.c
+linking shared-object erb/escape.so
+
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/erb-6.0.7/ext/erb/escape
+make -j3 DESTDIR\= sitearchdir\=./.gem.20260828-81157-f000ym sitelibdir\=./.gem.20260828-81157-f000ym install
+make: warning: -j3 forced in submake: resetting jobserver mode.
+/usr/bin/install -c -m 0755 escape.so ./.gem.20260828-81157-f000ym/erb
+
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/erb-6.0.7/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20260828-81157-f000ym sitelibdir\=./.gem.20260828-81157-f000ym clean

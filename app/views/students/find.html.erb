@@ -1,0 +1,57 @@
+<div class="container py-4">
+
+  <div class="card shadow-sm">
+
+    <div class="card-body">
+
+      <h1 class="text-center mb-4">
+        🔍 Find Student
+      </h1>
+
+      <p class="text-center text-muted">
+        Enter the Student ID to view the student details.
+      </p>
+
+
+      <%= form_with url: find_student_path,
+          method: :get,
+          local: true,
+          class: "row justify-content-center g-3 mt-3" do |form| %>
+
+        <div class="col-md-6">
+
+          <%= form.label :id,
+              "Student ID",
+              class: "form-label fw-bold" %>
+
+          <%= form.number_field :id,
+              class: "form-control",
+              placeholder: "Enter Student ID",
+              min: 1,
+              required: true %>
+
+        </div>
+
+        <div class="col-md-auto d-flex align-items-end">
+
+          <%= form.submit "🔍 Find",
+              class: "btn btn-primary" %>
+
+        </div>
+
+      <% end %>
+
+
+      <div class="text-center mt-4">
+
+        <%= link_to "← Back to Students",
+            students_path,
+            class: "btn btn-secondary" %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

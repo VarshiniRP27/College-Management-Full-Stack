@@ -1,0 +1,21 @@
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+/usr/local/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make -j3 DESTDIR\= sitearchdir\=./.gem.20260828-81157-vsmmje sitelibdir\=./.gem.20260828-81157-vsmmje clean
+make: warning: -j3 forced in submake: resetting jobserver mode.
+
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make -j3 DESTDIR\= sitearchdir\=./.gem.20260828-81157-vsmmje sitelibdir\=./.gem.20260828-81157-vsmmje
+make: warning: -j3 forced in submake: resetting jobserver mode.
+compiling cparse.c
+linking shared-object racc/cparse.so
+
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make -j3 DESTDIR\= sitearchdir\=./.gem.20260828-81157-vsmmje sitelibdir\=./.gem.20260828-81157-vsmmje install
+make: warning: -j3 forced in submake: resetting jobserver mode.
+/usr/bin/install -c -m 0755 cparse.so ./.gem.20260828-81157-vsmmje/racc
+
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20260828-81157-vsmmje sitelibdir\=./.gem.20260828-81157-vsmmje clean

@@ -1,0 +1,30 @@
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/bcrypt_pbkdf-1.1.2/ext/mri
+/usr/local/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/bcrypt_pbkdf-1.1.2/ext/mri
+make DESTDIR\= sitearchdir\=./.gem.20260828-81157-7b1uag sitelibdir\=./.gem.20260828-81157-7b1uag clean
+
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/bcrypt_pbkdf-1.1.2/ext/mri
+make DESTDIR\= sitearchdir\=./.gem.20260828-81157-7b1uag sitelibdir\=./.gem.20260828-81157-7b1uag
+compiling bcrypt_pbkdf.c
+compiling bcrypt_pbkdf_ext.c
+compiling blowfish.c
+compiling explicit_bzero.c
+compiling hash_sha512.c
+bcrypt_pbkdf_ext.c: In function ‘Init_bcrypt_pbkdf_ext’:
+bcrypt_pbkdf_ext.c:38:6: warning: old-style function definition [-Wold-style-definition]
+   38 | void Init_bcrypt_pbkdf_ext(){
+      |      ^~~~~~~~~~~~~~~~~~~~~
+bcrypt_pbkdf_ext.c: At top level:
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+linking shared-object bcrypt_pbkdf_ext.so
+
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/bcrypt_pbkdf-1.1.2/ext/mri
+make DESTDIR\= sitearchdir\=./.gem.20260828-81157-7b1uag sitelibdir\=./.gem.20260828-81157-7b1uag install
+/usr/bin/install -c -m 0755 bcrypt_pbkdf_ext.so ./.gem.20260828-81157-7b1uag
+
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/bcrypt_pbkdf-1.1.2/ext/mri
+make DESTDIR\= sitearchdir\=./.gem.20260828-81157-7b1uag sitelibdir\=./.gem.20260828-81157-7b1uag clean

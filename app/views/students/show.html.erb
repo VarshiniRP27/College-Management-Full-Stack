@@ -1,0 +1,81 @@
+<div class="container py-4">
+
+  <div class="card shadow-sm">
+
+    <div class="card-body">
+
+      <h1 class="mb-4">
+        🎓 Student Details
+      </h1>
+
+
+      <table class="table table-bordered">
+
+        <tr>
+          <th>ID</th>
+          <td><%= @student.id %></td>
+        </tr>
+
+        <tr>
+          <th>Name</th>
+          <td><%= @student.name %></td>
+        </tr>
+
+        <tr>
+          <th>Age</th>
+          <td><%= @student.age %></td>
+        </tr>
+
+        <tr>
+          <th>Course</th>
+          <td><%= @student.course %></td>
+        </tr>
+
+        <tr>
+          <th>Marks</th>
+          <td><%= @student.marks %></td>
+        </tr>
+
+        <tr>
+          <th>Result</th>
+
+          <td>
+
+            <% if @student.result == "PASS" %>
+
+              <span class="badge bg-success">
+                PASS
+              </span>
+
+            <% else %>
+
+              <span class="badge bg-danger">
+                FAIL
+              </span>
+
+            <% end %>
+
+          </td>
+
+        </tr>
+
+      </table>
+
+
+      <div class="mt-4">
+
+        <%= link_to "← Back",
+            students_path,
+            class: "btn btn-secondary" %>
+
+        <%= link_to "✏️ Edit",
+            edit_student_path(@student),
+            class: "btn btn-warning" %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

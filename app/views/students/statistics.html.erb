@@ -1,0 +1,201 @@
+<div class="container py-5">
+
+  <!-- Page Header -->
+
+  <div class="text-center mb-5">
+
+    <h1 class="fw-bold">
+      📊 Student Statistics
+    </h1>
+
+    <p class="text-muted">
+      Overview of student performance
+    </p>
+
+  </div>
+
+
+  <!-- Statistics Cards -->
+
+  <div class="row g-4">
+
+
+    <!-- Total Students -->
+
+    <div class="col-md-6 col-lg-4">
+
+      <div class="card shadow-sm h-100">
+
+        <div class="card-body text-center p-4">
+
+          <div class="fs-1 mb-2">
+            👨‍🎓
+          </div>
+
+          <h5 class="text-muted">
+            Total Students
+          </h5>
+
+          <h2 class="fw-bold">
+            <%= @total_students %>
+          </h2>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Average Marks -->
+
+    <div class="col-md-6 col-lg-4">
+
+      <div class="card shadow-sm h-100">
+
+        <div class="card-body text-center p-4">
+
+          <div class="fs-1 mb-2">
+            📈
+          </div>
+
+          <h5 class="text-muted">
+            Average Marks
+          </h5>
+
+          <h2 class="fw-bold">
+            <%= @average_marks %>
+          </h2>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Highest Marks -->
+
+    <div class="col-md-6 col-lg-4">
+
+      <div class="card shadow-sm h-100">
+
+        <div class="card-body text-center p-4">
+
+          <div class="fs-1 mb-2">
+            🏆
+          </div>
+
+          <h5 class="text-muted">
+            Highest Marks
+          </h5>
+
+          <h2 class="fw-bold">
+            <%= @highest_marks %>
+          </h2>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Lowest Marks -->
+
+    <div class="col-md-6 col-lg-4">
+
+      <div class="card shadow-sm h-100">
+
+        <div class="card-body text-center p-4">
+
+          <div class="fs-1 mb-2">
+            📉
+          </div>
+
+          <h5 class="text-muted">
+            Lowest Marks
+          </h5>
+
+          <h2 class="fw-bold">
+            <%= @lowest_marks %>
+          </h2>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Pass Count -->
+
+    <div class="col-md-6 col-lg-4">
+
+      <div class="card shadow-sm h-100">
+
+        <div class="card-body text-center p-4">
+
+          <div class="fs-1 mb-2">
+            ✅
+          </div>
+
+          <h5 class="text-muted">
+            Students Passed
+          </h5>
+
+          <h2 class="fw-bold text-success">
+            <%= @pass_count %>
+          </h2>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Fail Count -->
+
+    <div class="col-md-6 col-lg-4">
+
+      <div class="card shadow-sm h-100">
+
+        <div class="card-body text-center p-4">
+
+          <div class="fs-1 mb-2">
+            ❌
+          </div>
+
+          <h5 class="text-muted">
+            Students Failed
+          </h5>
+
+          <h2 class="fw-bold text-danger">
+            <%= @fail_count %>
+          </h2>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Navigation -->
+
+  <div class="text-center mt-5">
+
+    <%= link_to "📋 View All Students",
+        students_path,
+        class: "btn btn-primary me-2" %>
+
+    <%= link_to "← Back to Home",
+        root_path,
+        class: "btn btn-secondary" %>
+
+  </div>
+
+</div>

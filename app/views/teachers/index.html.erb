@@ -1,0 +1,192 @@
+<div class="container py-5">
+
+  <!-- Page Header -->
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+      <h1 class="fw-bold mb-1">
+        👨‍🏫 Teachers
+      </h1>
+
+      <p class="text-muted mb-0">
+        View teachers and the courses they teach
+      </p>
+    </div>
+
+
+    <!-- Admin: Add Teacher -->
+
+    <% if admin_logged_in? %>
+
+      <%= link_to "➕ Add Teacher",
+          new_teacher_path,
+          class: "btn btn-primary" %>
+
+    <% end %>
+
+  </div>
+
+
+  <!-- Teachers Table -->
+
+  <div class="card shadow-sm">
+
+    <div class="card-body p-0">
+
+      <div class="table-responsive">
+
+        <table class="table table-hover align-middle mb-0">
+
+          <thead class="table-dark">
+
+            <tr>
+              <th>ID</th>
+              <th>Teacher Name</th>
+              <th>Email</th>
+              <th>Courses</th>
+              <th>Actions</th>
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            <% if @teachers.any? %>
+
+              <% @teachers.each do |teacher| %>
+
+                <tr>
+
+                  <!-- ID -->
+
+                  <td>
+                    <%= teacher.id %>
+                  </td>
+
+
+                  <!-- Teacher Name -->
+
+                  <td>
+                    <strong>
+                      <%= teacher.name %>
+                    </strong>
+                  </td>
+
+
+                  <!-- Email -->
+
+                  <td>
+                    <%= teacher.email %>
+                  </td>
+
+
+                  <!-- Courses -->
+
+                  <td>
+
+                    <% if teacher.courses.any? %>
+
+                      <% teacher.courses.each do |course| %>
+
+                        <span class="badge bg-info text-dark me-1">
+                          <%= course.name %>
+                        </span>
+
+                      <% end %>
+
+                    <% else %>
+
+                      <span class="text-muted">
+                        No courses assigned
+                      </span>
+
+                    <% end %>
+
+                  </td>
+
+
+                  <!-- Actions -->
+
+                  <td>
+
+                    <%= link_to "View",
+                        teacher_path(teacher),
+                        class: "btn btn-sm btn-outline-primary" %>
+
+
+                    <% if admin_logged_in? %>
+
+                      <%= link_to "Edit",
+                          edit_teacher_path(teacher),
+                          class: "btn btn-sm btn-outline-warning" %>
+
+
+                      <%= button_to "Delete",
+                          teacher_path(teacher),
+                          method: :delete,
+                          data: {
+                            turbo_confirm: "Are you sure you want to delete this teacher?"
+                          },
+                          class: "btn btn-sm btn-outline-danger" %>
+
+                    <% end %>
+
+                  </td>
+
+                </tr>
+
+              <% end %>
+
+            <% else %>
+
+              <tr>
+
+                <td colspan="5"
+                    class="text-center py-5">
+
+                  <h5>
+                    No teachers found
+                  </h5>
+
+                  <p class="text-muted">
+                    There are currently no teachers in the system.
+                  </p>
+
+                  <% if admin_logged_in? %>
+
+                    <%= link_to "Add First Teacher",
+                        new_teacher_path,
+                        class: "btn btn-primary" %>
+
+                  <% end %>
+
+                </td>
+
+              </tr>
+
+            <% end %>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Back Button -->
+
+  <div class="mt-4">
+
+    <%= link_to "← Back to Home",
+        root_path,
+        class: "btn btn-secondary" %>
+
+  </div>
+
+</div>

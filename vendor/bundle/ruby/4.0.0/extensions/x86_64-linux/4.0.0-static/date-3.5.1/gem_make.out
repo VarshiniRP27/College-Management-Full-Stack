@@ -1,0 +1,24 @@
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/date-3.5.1/ext/date
+/usr/local/bin/ruby extconf.rb
+checking for rb_category_warn()... yes
+checking for timezone in time.h with -Werror... yes
+checking for altzone in time.h with -Werror... no
+creating Makefile
+
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/date-3.5.1/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20260828-81157-p4mcrs sitelibdir\=./.gem.20260828-81157-p4mcrs clean
+
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/date-3.5.1/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20260828-81157-p4mcrs sitelibdir\=./.gem.20260828-81157-p4mcrs
+compiling date_core.c
+compiling date_parse.c
+compiling date_strftime.c
+compiling date_strptime.c
+linking shared-object date_core.so
+
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/date-3.5.1/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20260828-81157-p4mcrs sitelibdir\=./.gem.20260828-81157-p4mcrs install
+/usr/bin/install -c -m 0755 date_core.so ./.gem.20260828-81157-p4mcrs
+
+current directory: /home/gs/Desktop/varshini/rails-project/vendor/bundle/ruby/4.0.0/gems/date-3.5.1/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20260828-81157-p4mcrs sitelibdir\=./.gem.20260828-81157-p4mcrs clean
