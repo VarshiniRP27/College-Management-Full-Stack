@@ -1,0 +1,27 @@
+<h1>Teacher Login</h1>
+
+<% if flash[:alert] %>
+  <p><%= flash[:alert] %></p>
+<% end %>
+
+<%= form_with url: teacher_login_path, method: :post do |form| %>
+
+  <div>
+    <%= form.label :email, "Email" %>
+    <%= form.email_field :email, required: true %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.label :password, "Password" %>
+    <%= form.password_field :password, required: true %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.submit "Login" %>
+  </div>
+
+<% end %>

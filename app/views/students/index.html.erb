@@ -1,9 +1,7 @@
+
 <div class="container py-4">
 
-  <!-- ========================= -->
   <!-- Header -->
-  <!-- ========================= -->
-
   <div class="d-flex justify-content-between align-items-center mb-4">
 
     <div>
@@ -17,11 +15,9 @@
     </div>
 
     <% if admin_logged_in? %>
-
       <%= link_to "➕ Add Student",
           new_student_path,
           class: "btn btn-primary" %>
-
     <% end %>
 
   </div>
@@ -44,20 +40,18 @@
           local: true,
           class: "row g-3 align-items-end" do |form| %>
 
-
         <div class="col-md-5">
 
-          <%= form.label :course,
+          <%= form.label :course_id,
               "Select Course",
               class: "form-label" %>
 
-
-          <%= form.select :course,
+          <%= form.select :course_id,
 
               options_for_select(
                 [["All Courses", ""]] +
-                @courses.map { |course| [course, course] },
-                params[:course]
+                @courses.map { |course| [course.name, course.id] },
+                params[:course_id]
               ),
 
               {},
@@ -98,9 +92,6 @@
 
     <div class="card-body">
 
-
-      <!-- Table Header -->
-
       <div class="d-flex justify-content-between align-items-center mb-3">
 
         <h3 class="mb-0">
@@ -108,11 +99,7 @@
         </h3>
 
         <span class="badge bg-secondary">
-
-          <%= @students.count %>
-
-          Students
-
+          <%= @students.count %> Students
         </span>
 
       </div>
@@ -131,21 +118,14 @@
             <thead class="table-dark">
 
               <tr>
-
                 <th>ID</th>
-
                 <th>Name</th>
-
+                <th>Email</th>
                 <th>Age</th>
-
                 <th>Course</th>
-
                 <th>Marks</th>
-
                 <th>Result</th>
-
                 <th>Actions</th>
-
               </tr>
 
             </thead>
@@ -157,35 +137,33 @@
 
                 <tr>
 
-
                   <!-- ID -->
 
                   <td>
-
                     <%= student.id %>
-
                   </td>
 
 
                   <!-- Name -->
 
                   <td>
-
                     <strong>
-
                       <%= student.name %>
-
                     </strong>
+                  </td>
 
+
+                  <!-- Email -->
+
+                  <td>
+                    <%= student.email.presence || "Not Provided" %>
                   </td>
 
 
                   <!-- Age -->
 
                   <td>
-
-                    <%= student.age %>
-
+                    <%= student.age.presence || "N/A" %>
                   </td>
 
 
@@ -195,7 +173,7 @@
 
                     <span class="badge bg-info text-dark">
 
-                      <%= student.course.presence || "Not Assigned" %>
+                      <%= student.course&.name || "Not Assigned" %>
 
                     </span>
 
@@ -207,9 +185,7 @@
                   <td>
 
                     <strong>
-
                       <%= student.marks %>
-
                     </strong>
 
                   </td>
@@ -222,17 +198,13 @@
                     <% if student.result == "PASS" %>
 
                       <span class="badge bg-success">
-
                         PASS
-
                       </span>
 
                     <% else %>
 
                       <span class="badge bg-danger">
-
                         FAIL
-
                       </span>
 
                     <% end %>
@@ -244,47 +216,30 @@
 
                   <td>
 
-                    <!-- Everyone can view -->
-
                     <%= link_to "View",
-
                         student_path(student),
-
                         class: "btn btn-sm btn-outline-primary" %>
 
 
-                    <!-- Admin only -->
-
                     <% if admin_logged_in? %>
 
-
                       <%= link_to "Edit",
-
                           edit_student_path(student),
-
                           class: "btn btn-sm btn-outline-warning" %>
 
 
                       <%= button_to "Delete",
-
                           student_path(student),
-
                           method: :delete,
-
                           class: "btn btn-sm btn-outline-danger",
-
                           data: {
-
                             turbo_confirm:
                               "Are you sure you want to delete this student?"
-
                           } %>
-
 
                     <% end %>
 
                   </td>
-
 
                 </tr>
 
@@ -318,7 +273,7 @@
 
                       students_path(
                         page: @pagy.prev,
-                        course: params[:course]
+                        course_id: params[:course_id]
                       ),
 
                       class: "btn btn-outline-primary" %>
@@ -326,9 +281,7 @@
                 <% else %>
 
                   <span class="btn btn-outline-secondary disabled">
-
                     ← Previous
-
                   </span>
 
                 <% end %>
@@ -338,30 +291,24 @@
 
                 <% @pagy.series.each do |item| %>
 
-
                   <% if item.is_a?(Integer) %>
 
                     <%= link_to item,
 
                         students_path(
                           page: item,
-                          course: params[:course]
+                          course_id: params[:course_id]
                         ),
 
                         class: "btn btn-outline-primary" %>
 
-
                   <% elsif item == "gap" %>
 
                     <span class="px-2">
-
                       ...
-
                     </span>
 
-
                   <% end %>
-
 
                 <% end %>
 
@@ -374,7 +321,7 @@
 
                       students_path(
                         page: @pagy.next,
-                        course: params[:course]
+                        course_id: params[:course_id]
                       ),
 
                       class: "btn btn-outline-primary" %>
@@ -382,13 +329,10 @@
                 <% else %>
 
                   <span class="btn btn-outline-secondary disabled">
-
                     Next →
-
                   </span>
 
                 <% end %>
-
 
               </div>
 
@@ -401,8 +345,11 @@
 
           <div class="text-center text-muted mt-3">
 
-            Page <strong><%= @pagy.page %></strong>
+            Page
+            <strong><%= @pagy.page %></strong>
+
             of
+
             <strong><%= @pagy.pages %></strong>
 
           </div>
@@ -411,7 +358,6 @@
 
 
       <% else %>
-
 
         <!-- ========================= -->
         <!-- No Students -->
@@ -423,24 +369,28 @@
             No students found.
           </h5>
 
-          <p class="mb-2">
+          <% if params[:course_id].present? %>
 
-            Try selecting a different course.
+            <p class="mb-2">
+              No students are assigned to the selected course.
+            </p>
 
-          </p>
+          <% else %>
+
+            <p class="mb-2">
+              There are no students yet.
+            </p>
+
+          <% end %>
 
 
           <%= link_to "View All Students",
-
               students_path,
-
               class: "btn btn-link" %>
 
         </div>
 
-
       <% end %>
-
 
     </div>
 
@@ -454,12 +404,10 @@
   <div class="mt-4">
 
     <%= link_to "← Back to Home",
-
         root_path,
-
         class: "btn btn-secondary" %>
 
   </div>
 
-
 </div>
+

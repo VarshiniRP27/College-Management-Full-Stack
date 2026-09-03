@@ -4,7 +4,7 @@ source "https://rubygems.org"
 gem "rails", "~> 8.1.3", ">= 8.1.3.1"
 
 # Database
-gem "sqlite3", ">= 2.1"
+gem "pg"
 
 # Web server
 gem "puma", ">= 5.0"
@@ -89,3 +89,7 @@ group :test do
   gem "selenium-webdriver"
 
 end
+
+gem "sqlite3", "~> 2.9"
+
+gem "sidekiq"

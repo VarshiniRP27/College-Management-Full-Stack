@@ -1,0 +1,61 @@
+<%= form_with(model: teacher) do |form| %>
+
+  <% if teacher.errors.any? %>
+    <div class="alert alert-danger">
+      <h5>
+        <%= pluralize(teacher.errors.count, "error") %>
+        prevented this teacher from being saved:
+      </h5>
+
+      <ul>
+        <% teacher.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, "Name", class: "form-label" %>
+    <%= form.text_field :name,
+        class: "form-control",
+        placeholder: "Enter teacher name" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :email, "Email", class: "form-label" %>
+    <%= form.email_field :email,
+        class: "form-control",
+        placeholder: "Enter teacher email" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :password, "Password", class: "form-label" %>
+    <%= form.password_field :password,
+        class: "form-control",
+        placeholder: "Enter teacher password" %>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Courses</label>
+
+    <% Course.order(:name).each do |course| %>
+      <div class="form-check">
+        <%= check_box_tag "teacher[course_ids][]",
+            course.id,
+            teacher.course_ids.include?(course.id),
+            id: "teacher_course_#{course.id}",
+            class: "form-check-input" %>
+
+        <%= label_tag "teacher_course_#{course.id}",
+            course.name,
+            class: "form-check-label" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+
+<% end %>

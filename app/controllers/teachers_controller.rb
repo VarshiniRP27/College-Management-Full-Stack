@@ -1,88 +1,63 @@
 class TeachersController < ApplicationController
+  before_action :set_teacher, only: %i[show edit update destroy]
 
-  before_action :require_admin,
-                except: [:index, :show]
-
-  before_action :set_teacher,
-                only: [:show, :edit, :update, :destroy]
-
-
-  # GET /teachers
   def index
-    @teachers = Teacher
-                 .includes(:courses)
-                 .order(name: :asc)
+    @teachers = Teacher.includes(:courses).order(:name)
   end
 
-
-  # GET /teachers/1
   def show
-    @courses = @teacher.courses
+    @courses = @teacher.courses.order(:name)
+
+    @students = Student
+                .where(course_id: @courses.select(:id))
+                .order(:name)
   end
 
-
-  # GET /teachers/new
   def new
     @teacher = Teacher.new
   end
 
+  def edit
+  end
 
-  # POST /teachers
   def create
     @teacher = Teacher.new(teacher_params)
 
     if @teacher.save
-      redirect_to @teacher,
-                  notice: "Teacher was successfully created."
+      redirect_to @teacher, notice: "Teacher was successfully created."
     else
-      render :new,
-             status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
-
-  # GET /teachers/1/edit
-  def edit
-  end
-
-
-  # PATCH/PUT /teachers/1
   def update
     if @teacher.update(teacher_params)
-      redirect_to @teacher,
-                  notice: "Teacher was successfully updated."
+      redirect_to @teacher, notice: "Teacher was successfully updated."
     else
-      render :edit,
-             status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
-
-  # DELETE /teachers/1
   def destroy
-    if @teacher.destroy
-      redirect_to teachers_path,
-                  notice: "Teacher was successfully deleted."
-    else
-      redirect_to teachers_path,
-                  alert: @teacher.errors.full_messages.to_sentence
-    end
+    @teacher.destroy
+    redirect_to teachers_path, notice: "Teacher was successfully deleted."
   end
-
 
   private
-
 
   def set_teacher
     @teacher = Teacher.find(params[:id])
   end
 
-
   def teacher_params
-    params.require(:teacher).permit(
-      :name,
-      :email
-    )
+    params
+      .require(:teacher)
+      .permit(
+        :name,
+        :email,
+        :password,
+        :password_confirmation,
+        course_ids: []
+      )
   end
-
 end

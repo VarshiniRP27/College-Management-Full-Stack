@@ -1,2 +1,149 @@
-<h1>Enrollments#index</h1>
-<p>Find me in app/views/enrollments/index.html.erb</p>
+<div class="container mt-5">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+      <h1>Enrollments</h1>
+
+      <p class="text-muted">
+        Manage student course enrollments.
+      </p>
+    </div>
+
+    <%= link_to "Enroll Student",
+        new_enrollment_path,
+        class: "btn btn-primary" %>
+
+  </div>
+
+
+  <% if notice %>
+    <div class="alert alert-success">
+      <%= notice %>
+    </div>
+  <% end %>
+
+
+  <% if alert %>
+    <div class="alert alert-danger">
+      <%= alert %>
+    </div>
+  <% end %>
+
+
+  <div class="card shadow-sm">
+
+    <div class="card-body">
+
+      <% if @enrollments.any? %>
+
+        <div class="table-responsive">
+
+          <table class="table table-hover align-middle">
+
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Student</th>
+                <th>Email</th>
+                <th>Course</th>
+                <th>Enrolled At</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+
+            <tbody>
+
+              <% @enrollments.each do |enrollment| %>
+
+                <tr>
+
+                  <td>
+                    <%= enrollment.id %>
+                  </td>
+
+                  <td>
+                    <%= enrollment.student.name %>
+                  </td>
+
+                  <td>
+                    <%= enrollment.student.email %>
+                  </td>
+
+                  <td>
+                    <%= enrollment.course.name %>
+                  </td>
+
+                  <td>
+                    <%= enrollment.enrolled_at.strftime("%d %b %Y %I:%M %p") %>
+                  </td>
+
+                  <td>
+
+                    <span class="badge bg-success">
+                      <%= enrollment.status %>
+                    </span>
+
+                  </td>
+
+                  <td>
+
+                    <div class="d-flex gap-1">
+
+                      <%= link_to "View",
+                          enrollment_path(enrollment),
+                          class: "btn btn-sm btn-outline-primary" %>
+
+
+                      <%= link_to "Edit",
+                          edit_enrollment_path(enrollment),
+                          class: "btn btn-sm btn-outline-warning" %>
+
+
+                      <%= button_to "Delete",
+                          enrollment_path(enrollment),
+                          method: :delete,
+                          class: "btn btn-sm btn-outline-danger",
+                          data: {
+                            turbo_confirm: "Delete this enrollment?"
+                          } %>
+
+                    </div>
+
+                  </td>
+
+                </tr>
+
+              <% end %>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      <% else %>
+
+        <div class="text-center py-5">
+
+          <h4>No enrollments yet</h4>
+
+          <p class="text-muted">
+            Create the first student enrollment.
+          </p>
+
+          <%= link_to "Enroll Student",
+              new_enrollment_path,
+              class: "btn btn-primary" %>
+
+        </div>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

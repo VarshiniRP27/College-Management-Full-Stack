@@ -1,0 +1,121 @@
+<div class="container mt-5">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1>Student Dashboard</h1>
+      <p class="text-muted">
+        Welcome, <%= @student.name %>!
+      </p>
+    </div>
+
+    <div>
+      <%= link_to "Edit My Profile",
+          edit_student_path(@student),
+          class: "btn btn-primary" %>
+
+      <%= button_to "Logout",
+          student_logout_path,
+          method: :delete,
+          class: "btn btn-outline-danger d-inline-block ms-2" %>
+    </div>
+  </div>
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-header">
+      <h4 class="mb-0">My Profile</h4>
+    </div>
+
+    <div class="card-body">
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <strong>Name</strong>
+        </div>
+        <div class="col-md-8">
+          <%= @student.name %>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <strong>Email</strong>
+        </div>
+        <div class="col-md-8">
+          <%= @student.email %>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <strong>Age</strong>
+        </div>
+        <div class="col-md-8">
+          <%= @student.age %>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <strong>Marks</strong>
+        </div>
+        <div class="col-md-8">
+          <%= @student.marks %>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <strong>Result</strong>
+        </div>
+        <div class="col-md-8">
+          <% if @student.marks.present? %>
+            <% if @student.marks >= 40 %>
+              <span class="badge bg-success">PASS</span>
+            <% else %>
+              <span class="badge bg-danger">FAIL</span>
+            <% end %>
+          <% else %>
+            <span class="text-muted">Not available</span>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <strong>Course</strong>
+        </div>
+        <div class="col-md-8">
+          <% if @student.course.present? %>
+            <%= @student.course.name %>
+          <% else %>
+            <span class="text-muted">No course assigned</span>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-header">
+      <h4 class="mb-0">Actions</h4>
+    </div>
+
+    <div class="card-body">
+
+      <%= link_to "Edit My Profile",
+          edit_student_path(@student),
+          class: "btn btn-primary me-2" %>
+
+      <%= link_to "View My Details",
+          student_path(@student),
+          class: "btn btn-secondary me-2" %>
+
+      <%= link_to "View Courses",
+          courses_path,
+          class: "btn btn-outline-primary" %>
+
+    </div>
+  </div>
+
+</div>

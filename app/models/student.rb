@@ -1,26 +1,29 @@
 class Student < ApplicationRecord
-
   belongs_to :course, optional: true
 
-  has_many :enrollments,
-           dependent: :destroy
+  has_many :enrollments, dependent: :destroy
+
+  has_secure_password
 
   validates :name,
             presence: true
 
+  validates :email,
+            presence: true,
+            uniqueness: true
+
   validates :age,
-            presence: true
+            presence: true,
+            numericality: { greater_than: 0 }
 
   validates :marks,
-            presence: true
+            presence: true,
+            numericality: {
+              greater_than_or_equal_to: 0,
+              less_than_or_equal_to: 100
+            }
 
-  # Calculate student result from marks
   def result
-    if marks.present? && marks >= 40
-      "PASS"
-    else
-      "FAIL"
-    end
+    marks.present? && marks >= 40 ? "PASS" : "FAIL"
   end
-
 end

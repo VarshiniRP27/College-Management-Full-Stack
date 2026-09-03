@@ -1,7 +1,5 @@
 class Enrollment < ApplicationRecord
-
   belongs_to :student
-
   belongs_to :course
 
   validates :enrolled_at,
@@ -15,5 +13,4 @@ class Enrollment < ApplicationRecord
               scope: :course_id,
               message: "is already enrolled in this course"
             }
-
 end

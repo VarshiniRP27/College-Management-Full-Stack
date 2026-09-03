@@ -2,10 +2,10 @@
 
   <% if student.errors.any? %>
     <div class="alert alert-danger">
-      <h5>
+      <h4>
         <%= pluralize(student.errors.count, "error") %>
         prevented this student from being saved:
-      </h5>
+      </h4>
 
       <ul>
         <% student.errors.full_messages.each do |message| %>
@@ -17,41 +17,73 @@
 
   <div class="mb-3">
     <%= form.label :name, "Name", class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
 
-    <%= form.text_field :name,
-        class: "form-control",
-        placeholder: "Enter student name" %>
+  <div class="mb-3">
+    <%= form.label :email, "Email", class: "form-label" %>
+    <%= form.email_field :email, class: "form-control" %>
   </div>
 
   <div class="mb-3">
     <%= form.label :age, "Age", class: "form-label" %>
-
-    <%= form.number_field :age,
-        class: "form-control",
-        placeholder: "Enter age",
-        min: 1 %>
+    <%= form.number_field :age, class: "form-control", min: 1 %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :course, "Course", class: "form-label" %>
-
-    <%= form.text_field :course,
+    <%= form.label :password, "New Password", class: "form-label" %>
+    <%= form.password_field :password,
         class: "form-control",
-        placeholder: "e.g. CSE, ECE, EEE" %>
+        placeholder: "Leave blank to keep current password" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :marks, "Marks", class: "form-label" %>
+    <%= form.label :password_confirmation,
+        "Confirm New Password",
+        class: "form-label" %>
 
-    <%= form.number_field :marks,
+    <%= form.password_field :password_confirmation,
         class: "form-control",
-        placeholder: "Enter marks",
-        min: 0,
-        max: 100 %>
+        placeholder: "Leave blank to keep current password" %>
   </div>
 
-  <div>
-    <%= form.submit "Save Student", class: "btn btn-primary" %>
+  <% unless student.persisted? %>
+
+    <div class="mb-3">
+      <%= form.label :marks, "Marks", class: "form-label" %>
+
+      <%= form.number_field :marks,
+          class: "form-control",
+          min: 0,
+          max: 100 %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :course_id, "Course", class: "form-label" %>
+
+      <%= form.collection_select(
+        :course_id,
+        Course.order(:name),
+        :id,
+        :name,
+        { include_blank: "Select Course" },
+        { class: "form-select" }
+      ) %>
+    </div>
+
+  <% end %>
+
+  <div class="mt-4">
+
+    <%= form.submit(
+      student.persisted? ? "Update Profile" : "Create Student",
+      class: "btn btn-primary"
+    ) %>
+
+    <%= link_to "Cancel",
+        student.persisted? ? student_path(student) : students_path,
+        class: "btn btn-secondary ms-2" %>
+
   </div>
 
 <% end %>

@@ -1,24 +1,27 @@
+
 <div class="container py-4">
 
   <div class="card shadow-sm">
 
     <div class="card-body">
 
-      <h1 class="text-center mb-4">
+      <h1 class="mb-4">
         🔍 Find Student
       </h1>
 
-      <p class="text-center text-muted">
-        Enter the Student ID to view the student details.
-      </p>
 
+      <!-- ========================= -->
+      <!-- Search Form -->
+      <!-- ========================= -->
 
       <%= form_with url: find_student_path,
           method: :get,
-          local: true,
-          class: "row justify-content-center g-3 mt-3" do |form| %>
+          local: true do |form| %>
 
-        <div class="col-md-6">
+
+        <!-- Student ID -->
+
+        <div class="mb-3">
 
           <%= form.label :id,
               "Student ID",
@@ -26,32 +29,236 @@
 
           <%= form.number_field :id,
               class: "form-control",
-              placeholder: "Enter Student ID",
-              min: 1,
-              required: true %>
+              placeholder: "Enter Student ID" %>
 
         </div>
 
-        <div class="col-md-auto d-flex align-items-end">
 
-          <%= form.submit "🔍 Find",
+        <!-- Student Name -->
+
+        <div class="mb-3">
+
+          <%= form.label :name,
+              "Student Name",
+              class: "form-label fw-bold" %>
+
+          <%= form.text_field :name,
+              class: "form-control",
+              placeholder: "Enter student name" %>
+
+        </div>
+
+
+        <!-- Course -->
+
+        <div class="mb-3">
+
+          <%= form.label :course_id,
+              "Course",
+              class: "form-label fw-bold" %>
+
+          <%= form.collection_select :course_id,
+              Course.order(:name),
+              :id,
+              :name,
+              { prompt: "All Courses" },
+              { class: "form-select" } %>
+
+        </div>
+
+
+        <!-- Buttons -->
+
+        <div>
+
+          <%= form.submit "🔍 Find Student",
               class: "btn btn-primary" %>
+
+          <%= link_to "Clear",
+              find_student_path,
+              class: "btn btn-secondary" %>
 
         </div>
 
       <% end %>
 
 
-      <div class="text-center mt-4">
+      <!-- ========================= -->
+      <!-- Search Results -->
+      <!-- ========================= -->
 
-        <%= link_to "← Back to Students",
-            students_path,
-            class: "btn btn-secondary" %>
+      <% if params[:id].present? ||
+            params[:name].present? ||
+            params[:course_id].present? %>
 
-      </div>
+
+        <hr class="my-4">
+
+
+        <h4 class="mb-3">
+          📋 Search Results
+        </h4>
+
+
+        <% if @students.any? %>
+
+
+          <div class="table-responsive">
+
+            <table class="table table-bordered table-hover align-middle">
+
+              <thead class="table-dark">
+
+                <tr>
+
+                  <th>ID</th>
+
+                  <th>Name</th>
+
+                  <th>Email</th>
+
+                  <th>Age</th>
+
+                  <th>Course</th>
+
+                  <th>Marks</th>
+
+                  <th>Result</th>
+
+                  <th>Action</th>
+
+                </tr>
+
+              </thead>
+
+
+              <tbody>
+
+                <% @students.each do |student| %>
+
+                  <tr>
+
+
+                    <!-- ID -->
+
+                    <td>
+                      <%= student.id %>
+                    </td>
+
+
+                    <!-- Name -->
+
+                    <td>
+                      <strong>
+                        <%= student.name %>
+                      </strong>
+                    </td>
+
+
+                    <!-- Email -->
+
+                    <td>
+                      <%= student.email %>
+                    </td>
+
+
+                    <!-- Age -->
+
+                    <td>
+                      <%= student.age %>
+                    </td>
+
+
+                    <!-- Course -->
+
+                    <td>
+
+                      <%= student.course&.name ||
+                          "Not Assigned" %>
+
+                    </td>
+
+
+                    <!-- Marks -->
+
+                    <td>
+                      <%= student.marks %>
+                    </td>
+
+
+                    <!-- Result -->
+
+                    <td>
+
+                      <% if student.result == "PASS" %>
+
+                        <span class="badge bg-success">
+                          PASS
+                        </span>
+
+                      <% else %>
+
+                        <span class="badge bg-danger">
+                          FAIL
+                        </span>
+
+                      <% end %>
+
+                    </td>
+
+
+                    <!-- Action -->
+
+                    <td>
+
+                      <%= link_to "View",
+                          student_path(student),
+                          class: "btn btn-sm btn-primary" %>
+
+                    </td>
+
+
+                  </tr>
+
+                <% end %>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+
+        <% else %>
+
+
+          <div class="alert alert-warning">
+
+            No student found.
+
+          </div>
+
+
+        <% end %>
+
+
+      <% end %>
+
 
     </div>
 
   </div>
 
+
+  <!-- Back -->
+
+  <div class="mt-4">
+
+    <%= link_to "← Back to Home",
+        root_path,
+        class: "btn btn-secondary" %>
+
+  </div>
+
 </div>
+

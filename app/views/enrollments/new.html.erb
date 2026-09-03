@@ -1,0 +1,65 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <h3 class="mb-0">Enroll Student</h3>
+        </div>
+
+        <div class="card-body">
+          <% if @enrollment.errors.any? %>
+            <div class="alert alert-danger">
+              <ul class="mb-0">
+                <% @enrollment.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <%= form_with model: @enrollment, local: true do |form| %>
+            <div class="mb-3">
+              <%= form.label :student_id, "Student", class: "form-label" %>
+              <%= form.collection_select :student_id,
+                                          @students,
+                                          :id,
+                                          :name,
+                                          { prompt: "Select student" },
+                                          { class: "form-select" } %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :course_id, "Course", class: "form-label" %>
+              <%= form.collection_select :course_id,
+                                          @courses,
+                                          :id,
+                                          :name,
+                                          { prompt: "Select course" },
+                                          { class: "form-select" } %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :enrolled_at, "Enrollment Date", class: "form-label" %>
+              <%= form.datetime_local_field :enrolled_at,
+                                            value: @enrollment.enrolled_at&.strftime("%Y-%m-%dT%H:%M"),
+                                            class: "form-control" %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :status, "Status", class: "form-label" %>
+              <%= form.select :status,
+                              [["Active", "active"], ["Pending", "pending"], ["Completed", "completed"]],
+                              { prompt: "Select status" },
+                              { class: "form-select" } %>
+            </div>
+
+            <div class="d-flex gap-2">
+              <%= form.submit "Enroll Student", class: "btn btn-primary" %>
+              <%= link_to "Cancel", enrollments_path, class: "btn btn-secondary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

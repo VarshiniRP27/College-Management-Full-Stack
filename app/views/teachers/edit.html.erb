@@ -1,0 +1,19 @@
+<div class="container py-4">
+  <div class="card shadow-sm">
+    <div class="card-body">
+
+      <h1 class="text-center mb-4">
+        ✏️ Edit Teacher
+      </h1>
+
+      <%= render "form", teacher: @teacher %>
+
+      <div class="mt-3">
+        <%= link_to "← Back to Teachers",
+            teachers_path,
+            class: "btn btn-secondary" %>
+      </div>
+
+    </div>
+  </div>
+</div>

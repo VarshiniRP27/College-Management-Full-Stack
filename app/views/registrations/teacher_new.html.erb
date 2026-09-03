@@ -1,0 +1,74 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+
+      <div class="card shadow-sm">
+        <div class="card-header text-center">
+          <h2>👨‍🏫 Teacher Registration</h2>
+        </div>
+
+        <div class="card-body p-4">
+
+          <% if @teacher.errors.any? %>
+            <div class="alert alert-danger">
+              <ul class="mb-0">
+                <% @teacher.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <%= form_with model: @teacher,
+                        url: teacher_register_path,
+                        local: true do |form| %>
+
+            <div class="mb-3">
+              <%= form.label :name, class: "form-label" %>
+              <%= form.text_field :name,
+                  class: "form-control",
+                  placeholder: "Enter your name" %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :email, class: "form-label" %>
+              <%= form.email_field :email,
+                  class: "form-control",
+                  placeholder: "Enter your email" %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :password, class: "form-label" %>
+              <%= form.password_field :password,
+                  class: "form-control",
+                  placeholder: "Create a password" %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :password_confirmation,
+                  "Confirm Password",
+                  class: "form-label" %>
+
+              <%= form.password_field :password_confirmation,
+                  class: "form-control",
+                  placeholder: "Confirm your password" %>
+            </div>
+
+            <div class="d-grid">
+              <%= form.submit "Register as Teacher",
+                  class: "btn btn-info btn-lg" %>
+            </div>
+
+          <% end %>
+
+          <div class="text-center mt-3">
+            <%= link_to "Already registered? Teacher Login",
+                teacher_login_path %>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

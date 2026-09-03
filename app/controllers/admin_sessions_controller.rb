@@ -1,25 +1,26 @@
 class AdminSessionsController < ApplicationController
 
-  # GET /admin/login
   def new
   end
 
-  # POST /admin/login
   def create
     @admin = Admin.find_by(username: params[:username])
 
     if @admin&.authenticate(params[:password])
+      session.delete(:teacher_id)
+      session.delete(:student_id)
       session[:admin_id] = @admin.id
 
-      redirect_to students_path,
+      redirect_to root_path,
                   notice: "Welcome, #{@admin.username}!"
     else
       flash.now[:alert] = "Invalid username or password."
-      render :new, status: :unprocessable_entity
+
+      render :new,
+             status: :unprocessable_entity
     end
   end
 
-  # DELETE /admin/logout
   def destroy
     session.delete(:admin_id)
 

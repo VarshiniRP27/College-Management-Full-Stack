@@ -1,0 +1,66 @@
+<div class="container py-5">
+
+  <div class="row justify-content-center">
+
+```
+<div class="col-md-5">
+
+  <div class="card shadow">
+
+    <div class="card-body p-4">
+
+      <h1 class="text-center mb-4">
+        🎓 Student Login
+      </h1>
+
+      <% if flash[:alert] %>
+        <div class="alert alert-danger">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+
+      <%= form_with url: student_login_path, method: :post do |form| %>
+
+        <div class="mb-3">
+
+          <%= form.label :email,
+              "Email",
+              class: "form-label" %>
+
+          <%= form.email_field :email,
+              class: "form-control",
+              required: true %>
+
+        </div>
+
+        <div class="mb-3">
+
+          <%= form.label :password,
+              "Password",
+              class: "form-label" %>
+
+          <%= form.password_field :password,
+              class: "form-control",
+              required: true %>
+
+        </div>
+
+        <div class="d-grid">
+
+          <%= form.submit "Login",
+              class: "btn btn-success btn-lg" %>
+
+        </div>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>
+```
+
+  </div>
+
+</div>

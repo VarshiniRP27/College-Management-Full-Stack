@@ -1,0 +1,85 @@
+<div class="container py-4">
+  <div class="card shadow-sm">
+    <div class="card-body">
+
+      <h1 class="mb-4">
+        👨‍🏫 Teacher Details
+      </h1>
+
+      <div class="mb-3">
+        <strong>Name:</strong>
+        <%= @teacher.name %>
+      </div>
+
+      <div class="mb-3">
+        <strong>Email:</strong>
+        <%= @teacher.email %>
+      </div>
+
+      <hr>
+
+      <h3>Courses</h3>
+
+      <% if @courses.any? %>
+        <ul>
+          <% @courses.each do |course| %>
+            <li>
+              <%= course.name %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="text-muted">
+          No courses assigned to this teacher.
+        </p>
+      <% end %>
+
+      <hr>
+
+      <h3>Students</h3>
+
+      <% if @students.any? %>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Marks</th>
+                <th>Course</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @students.each do |student| %>
+                <tr>
+                  <td><%= student.name %></td>
+                  <td><%= student.email %></td>
+                  <td><%= student.age %></td>
+                  <td><%= student.marks %></td>
+                  <td><%= student.course&.name || "Not assigned" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+        <p class="text-muted">
+          No students are assigned to this teacher's courses.
+        </p>
+      <% end %>
+
+      <div class="mt-4">
+        <%= link_to "← Back to Teachers",
+            teachers_path,
+            class: "btn btn-secondary" %>
+
+        <%= link_to "✏️ Edit",
+            edit_teacher_path(@teacher),
+            class: "btn btn-primary" %>
+      </div>
+
+    </div>
+  </div>
+</div>

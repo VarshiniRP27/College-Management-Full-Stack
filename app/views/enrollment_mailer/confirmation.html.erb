@@ -1,0 +1,22 @@
+<h1>Enrollment Confirmed</h1>
+
+<p>Hello <%= @enrollment.student.name %>,</p>
+
+<p>Your enrollment has been successfully confirmed.</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @enrollment.course.name %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @enrollment.status %>
+</p>
+
+<p>
+  <strong>Enrolled At:</strong>
+  <%= @enrollment.enrolled_at %>
+</p>
+
+<p>Thank you.</p>

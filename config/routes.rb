@@ -1,66 +1,49 @@
 Rails.application.routes.draw do
-
-  # =========================
-  # Home
-  # =========================
-
   root "home#index"
-
-  get "home/about",
-      to: "home#about",
-      as: :home_about
-
-
-  # =========================
-  # Students
-  # =========================
+  get "home/about", to: "home#about", as: :home_about
+  get "students/statistics", to: "students#statistics", as: :student_statistics
+  get "find", to: "students#find", as: :find_student
 
   resources :students
+  resources :courses
 
-  get "students/statistics",
-      to: "students#statistics",
-      as: :student_statistics
+  get "teacher/register", to: "registrations#teacher_new", as: :teacher_register
+  post "teacher/register", to: "registrations#teacher_create"
 
-  get "find",
-      to: "students#find",
-      as: :find_student
+  get "student/register", to: "registrations#student_new", as: :student_register
+  post "student/register", to: "registrations#student_create"
 
-
-  # =========================
-  # Teachers
-  # =========================
+  get "teacher/login", to: "teacher_sessions#new", as: :teacher_login
+  post "teacher/login", to: "teacher_sessions#create"
+  delete "teacher/logout", to: "teacher_sessions#destroy", as: :teacher_logout
+  get "teacher/dashboard", to: "teacher_dashboard#index", as: :teacher_dashboard
 
   resources :teachers
 
-
-  # =========================
-  # Enrollments
-  # =========================
+  get "student/login", to: "student_sessions#new", as: :student_login
+  post "student/login", to: "student_sessions#create"
+  delete "student/logout", to: "student_sessions#destroy", as: :student_logout
+  get "student/dashboard", to: "student_dashboard#index", as: :student_dashboard
 
   resources :enrollments
 
+  get "admin/login", to: "admin_sessions#new", as: :admin_login
+  post "admin/login", to: "admin_sessions#create"
+  delete "admin/logout", to: "admin_sessions#destroy", as: :admin_logout
 
-  # =========================
-  # Admin Login
-  # =========================
+  namespace :api do
+    namespace :v1 do
+      post "auth/register", to: "auth#register"
+      post "auth/login", to: "auth#login"
 
-  get "admin/login",
-      to: "admin_sessions#new",
-      as: :admin_login
+      get "students/statistics", to: "students#statistics", as: :students_statistics
+      resources :students
 
-  post "admin/login",
-       to: "admin_sessions#create"
+      resources :courses
 
-  delete "admin/logout",
-         to: "admin_sessions#destroy",
-         as: :admin_logout
+      resources :enrollments, only: %i[index show create destroy]
+    end
+  end
 
-
-  # =========================
-  # Rails Health Check
-  # =========================
-
-  get "up" => "rails/health#show",
-      as: :rails_health_check
-
+  get "up", to: "rails/health#show", as: :rails_health_check
 end
