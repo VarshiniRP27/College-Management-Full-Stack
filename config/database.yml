@@ -3,8 +3,9 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: <%= ENV.fetch("PGHOST") { ENV["HOME"] + "/postgres_data" } %>
-  port: 5434
-  username: gs
+  port: <%= ENV.fetch("PGPORT") { 5434 } %>
+  username: <%= ENV.fetch("PGUSER") { "gs" } %>
+  password: <%= ENV["PGPASSWORD"] %>
 
 development:
   <<: *default
