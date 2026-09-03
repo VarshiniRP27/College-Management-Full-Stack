@@ -41,7 +41,7 @@ class Api::V1::BaseController < ApplicationController
       end
 
     unless @current_api_user
-      return render json: {
+      render json: {
         error: "User not found"
       }, status: :unauthorized
     end

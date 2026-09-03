@@ -8,7 +8,7 @@ class Api::V1::CoursesController < Api::V1::BaseController
   rescue_from ActionController::ParameterMissing do |error|
     render json: {
       errors: {
-        parameter: [error.message]
+        parameter: [ error.message ]
       }
     }, status: :bad_request
   end
@@ -18,9 +18,9 @@ class Api::V1::CoursesController < Api::V1::BaseController
               .includes(:teacher)
               .order(created_at: :desc)
 
-    page = [params.fetch(:page, 1).to_i, 1].max
-    per_page = [params.fetch(:per_page, 10).to_i, 1].max
-    per_page = [per_page, 100].min
+    page = [ params.fetch(:page, 1).to_i, 1 ].max
+    per_page = [ params.fetch(:per_page, 10).to_i, 1 ].max
+    per_page = [ per_page, 100 ].min
 
     total = courses.count
 

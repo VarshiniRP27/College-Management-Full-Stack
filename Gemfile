@@ -50,7 +50,6 @@ gem "bcrypt", "~> 3.1"
 # =========================
 
 group :development, :test do
-
   gem "debug",
       platforms: %i[mri windows],
       require: "debug/prelude"
@@ -63,7 +62,6 @@ group :development, :test do
 
   gem "rubocop-rails-omakase",
       require: false
-
 end
 
 
@@ -72,9 +70,7 @@ end
 # =========================
 
 group :development do
-
   gem "web-console"
-
 end
 
 
@@ -83,11 +79,9 @@ end
 # =========================
 
 group :test do
-
   gem "capybara"
 
   gem "selenium-webdriver"
-
 end
 
 gem "sqlite3", "~> 2.9"

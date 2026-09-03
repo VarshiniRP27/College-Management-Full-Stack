@@ -13,7 +13,7 @@ class Api::V1::StudentsController < Api::V1::BaseController
   rescue_from ActionController::ParameterMissing do |error|
     render json: {
       errors: {
-        parameter: [error.message]
+        parameter: [ error.message ]
       }
     }, status: :bad_request
   end
@@ -38,10 +38,10 @@ class Api::V1::StudentsController < Api::V1::BaseController
       students = students.where("marks >= ?", params[:min_marks])
     end
 
-    page = [params.fetch(:page, 1).to_i, 1].max
+    page = [ params.fetch(:page, 1).to_i, 1 ].max
 
-    per_page = [params.fetch(:per_page, 10).to_i, 1].max
-    per_page = [per_page, 100].min
+    per_page = [ params.fetch(:per_page, 10).to_i, 1 ].max
+    per_page = [ per_page, 100 ].min
 
     total = students.count
 

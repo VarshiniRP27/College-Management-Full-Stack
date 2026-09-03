@@ -1,7 +1,6 @@
 require "pagy"
 
 class ApplicationController < ActionController::Base
-
   # Modern Pagy pagination syntax (v9+)
   include Pagy::Method
 
@@ -27,5 +26,4 @@ class ApplicationController < ActionController::Base
                   alert: "Admin login required."
     end
   end
-
 end
