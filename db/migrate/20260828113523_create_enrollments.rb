@@ -11,7 +11,7 @@ class CreateEnrollments < ActiveRecord::Migration[8.1]
     end
 
     add_index :enrollments,
-              [:student_id, :course_id],
+              [ :student_id, :course_id ],
               unique: true
   end
 end

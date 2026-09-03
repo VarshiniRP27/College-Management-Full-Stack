@@ -10,6 +10,6 @@ class CreateApiTokens < ActiveRecord::Migration[8.1]
     end
 
     add_index :api_tokens, :token, unique: true
-    add_index :api_tokens, [:user_type, :user_id]
+    add_index :api_tokens, [ :user_type, :user_id ]
   end
 end
