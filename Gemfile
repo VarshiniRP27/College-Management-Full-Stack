@@ -84,6 +84,6 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "sqlite3", "~> 2.9"
+gem "sqlite3", "~> 2.10"
 
 gem "sidekiq"
